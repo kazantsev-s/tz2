@@ -32,9 +32,17 @@ jobs:
       - name: Test with Maven
         run: mvn -B test --file pom.xml
 
+      - name: Notify success on Telegram
+        if: success()
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          args: "All tests passed successfully."
+
       - name: Telegram Notifications
         if: failure()
-        uses: appleboy/telegram-action@main
+        uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
