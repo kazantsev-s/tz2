@@ -9,7 +9,7 @@
 Для запуска тестов на своей рабочей машине необходимо скопировать репозиторий и проверить, что установлена актуальная версия [Java](https://www.oracle.com/java/technologies/downloads/) и [Maven](https://maven.apache.org/download.cgi)
 
 ```bash
-https://github.com/kazantsev-s/tz2
+git clone https://github.com/kazantsev-s/tz2
 java -version
 mvn -version
 ```
