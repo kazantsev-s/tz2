@@ -1,4 +1,4 @@
-name: Java CI with Maven
+name: Java tests on ubuntu
 
 on:
   push:
@@ -32,19 +32,19 @@ jobs:
       - name: Test with Maven
         run: mvn -B test --file pom.xml
 
-      - name: Notify success on Telegram
+      - name: Success notifications
         if: success()
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          args: "All tests passed successfully."
+          args: "Все тесты пройдены успешно!"
 
-      - name: Telegram Notifications
+      - name: Failure notifications
         if: failure()
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          args: "Some tests failed. Please check the Actions log for more details."
+          args: "Некоторые тесты были не пройдены."
 
